@@ -48,7 +48,7 @@ const handleGetFilm = client => (req, res, next) => {
         .then(mergeFilm)
         .then(film => res.render('film', {
             ...film,
-            user: req.user,
+            user: req.user ? req.user.id : undefined,
             ownReview: findOwnReview(req.user, film.reviews),
         }))
         .catch(next)

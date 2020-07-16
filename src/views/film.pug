@@ -69,19 +69,20 @@ block content
             else
                 include includes/review-form.pug
         each review in reviews
-            section(class='review shadow')
-                p(class='review__comment review__author')
-                    | What&nbsp;
-                    strong= review.author
-                    | &nbsp;thinks about #{title}
-                p(class='review__comment review__tag') This film is worth...
-                if review.worthSeeing
-                    span(class='review__worth') &#10003; Seeing
-                if review.worthCinema
-                    span(class='review__worth') &#10003; Seeing at a Cinema
-                if review.worthOwning
-                    span(class='review__worth') &#10003; Owning
-                p(class='review__comment')= review.comment
+            unless review.author === user
+                section(class='review shadow')
+                    p(class='review__comment review__author')
+                        | What&nbsp;
+                        strong= review.author.slice(0, 12)
+                        | &nbsp;thinks about #{title}
+                    p(class='review__comment review__tag') This film is worth...
+                    if review.worthSeeing
+                        span(class='review__worth') &#10003; Seeing
+                    if review.worthCinema
+                        span(class='review__worth') &#10003; Seeing at a Cinema
+                    if review.worthOwning
+                        span(class='review__worth') &#10003; Owning
+                    p(class='review__comment')= review.comment
         else
             section(class='review shadow')
                 p(class='review__comment') Sorry, no one has reviewed this film yet

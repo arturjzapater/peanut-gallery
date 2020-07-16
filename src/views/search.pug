@@ -10,7 +10,8 @@ block content
     main(class='content')
         each film in films
             section(class='card shadow')
-                img(src=`${film.Poster}`, alt=`${film.Title}`, class='card__poster')
+                if film.Poster !== 'N/A'
+                    img(src=`${film.Poster}`, alt=`${film.Title}`, class='card__poster')
                 div(class='card__info')
                     h2(class='card__title')= film.Title
                     span(class='card__year') (#{film.Year})
