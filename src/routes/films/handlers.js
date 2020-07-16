@@ -47,6 +47,7 @@ const handlePostReview = client => (req, res, next) => {
         ...req.body,
         film: req.params.id,
         user: req.user.id,
+        timestamp: Date.now(),
     }
     addReview(client, review)
         .then(() => res.redirect(`/films/${req.params.id}`))
