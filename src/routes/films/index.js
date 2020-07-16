@@ -1,4 +1,5 @@
 const router = require('express').Router()
+const checkLogin = require('../../middleware/checkLogin')
 const {
     handleDeleteReview,
     handleGetFilm,
@@ -14,10 +15,10 @@ module.exports = client => {
         .get(handleGetFilm(client))
 
     router.route('/films/:id/reviews')
-        .post(handlePostReview(client))
+        .post(checkLogin, handlePostReview(client))
     
     router.route('/reviews/:review')
-        .delete(handleDeleteReview(client))
+        .delete(checkLogin, handleDeleteReview(client))
 
     router.route('/search')
         .get(handleSearch)

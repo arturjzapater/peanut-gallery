@@ -142,6 +142,7 @@ main {
 }
 
 .card__info {
+    flex-grow: 1;
     display: grid;
     grid-template-columns: 1fr 50px;
     align-items: baseline;
