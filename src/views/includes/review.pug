@@ -14,3 +14,9 @@ section(class='review shadow')
     if review.worthOwning
         +check('Owning')
     p(class='review__comment')= review.comment
+    p.review__likes
+        if review.votes.includes(user)
+            i(class=`fas fa-heart${user ? ' review__vote' : ''}`, data-review=`${review._id}`)
+        else
+            i(class=`far fa-heart${user ? ' review__vote' : ''}`, data-review=`${review._id}`)
+        | &nbsp;#{review.votes.length}

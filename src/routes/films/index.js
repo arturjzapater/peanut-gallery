@@ -5,6 +5,7 @@ const {
     handleGetFilm,
     handleHome,
     handlePostReview,
+    handlePutReview,
     handleSearch,
 } = require('./handlers')
 
@@ -18,6 +19,7 @@ module.exports = client => {
         .post(checkLogin, handlePostReview(client))
     
     router.route('/reviews/:review')
+        .put(checkLogin, handlePutReview(client))
         .delete(checkLogin, handleDeleteReview(client))
 
     router.route('/search')
