@@ -1,0 +1,16 @@
+section(class='review-form')
+    h2(class='review-form__title') Leave Your Review
+    form(action=`/films/${imdbID}/reviews`, method='POST')
+        label
+            input(type='checkbox', name='worthSeeing')
+            | It's worth seeing
+        label
+            input(type='checkbox', name='worthCinema')
+            | It's worth seeing at the cinema
+        label
+            input(type='checkbox', name='worthOwning')
+            | It's worth owning
+        label
+            | Comment
+            textarea(name='comment', class='review-form__comment')
+        input(type='submit', value='Submit Review')
