@@ -16,9 +16,17 @@ block content
             h2(class='info__title') Some Ratings
             each r in ratings
                 p #{r.Source}: #{r.Value}
+        if user
+            include includes/review-form.pug
         each review in reviews
             section(class='review')
-                p Hi
+                if review.worthSeeing
+                    span(class='review__worth') Worth Seeing
+                if review.worthCinema
+                    span(class='review__worth') Worth Seeing at a Cinema
+                if review.worthOwning
+                    span(class='review__worth') Worth Owning
+                p(class='review__comment')= review.comment
         else
             section(class='review')
                 p Sorry, no one has reviewed this film yet

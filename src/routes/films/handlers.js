@@ -1,6 +1,6 @@
 const fetch = require('node-fetch')
 const { base } = require('../../conf/api')
-const { getReviews } = require('../../lib/db')
+const { addReview, getReviews } = require('../../lib/db')
 
 const request = uri => fetch(uri)
     .then(res => res.json())
@@ -25,6 +25,7 @@ const mergeFilm = ([ reviews, film ]) => ({
     plot: film.Plot,
     ratings: film.Ratings,
     production: film.Production,
+    imdbID: film.imdbID,
     reviews,
 })
 
@@ -41,13 +42,24 @@ const handleGetFilm = client => (req, res, next) => {
         .catch(next)
 }
 
+const handlePostReview = client => (req, res, next) => {
+    const review = {
+        ...req.body,
+        film: req.params.id,
+        user: req.user.id,
+    }
+    addReview(client, review)
+        .then(() => res.redirect(`/films/${req.params.id}`))
+        .catch(next)
+}
+
 const handleSearch = (req, res, next) => {
     if (req.query.search !== undefined) {
         request(`${base}&s=${req.query.search}`)
             .then(parseResults)
             .then(films => res.render('search', {
                 films,
-                uesr: req.user,
+                user: req.user,
             }))
             .catch(next)
     } else {
@@ -60,5 +72,6 @@ const handleSearch = (req, res, next) => {
 
 module.exports = {
     handleGetFilm,
+    handlePostReview,
     handleSearch,
 }
