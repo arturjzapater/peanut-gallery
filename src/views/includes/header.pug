@@ -1,0 +1,10 @@
+header
+    h1(class='header__title') The Peanut Gallery
+    nav(class='navbar')
+        a(href='/search', class='navbar__link') Search
+        if user
+            a(href='/auth/logout', class='navbar__link-log') Logout
+        else
+            a(href='/auth/google', class='navbar__link-log')
+                i(class='fab fa-google')
+                | &nbsp;Google Login

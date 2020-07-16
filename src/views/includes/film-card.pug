@@ -1,0 +1,7 @@
+section(class='card shadow')
+    if film.Poster !== 'N/A'
+        img(src=`${film.Poster}`, alt=`${film.Title}`, class='card__poster')
+    div(class='card__info')
+        h2(class='card__title')= film.Title
+        span(class='card__year') (#{film.Year})
+        a(href=`/films/${film.imdbID}`, class='card__link') See Reviews

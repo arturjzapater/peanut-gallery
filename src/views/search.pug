@@ -1,0 +1,11 @@
+extends base/layout.pug
+
+block content
+    include includes/search-form.pug
+
+    main(class='content')
+        each film in films
+            include includes/film-card.pug
+        else
+            if search
+                p Sorry, no matches found for that search.

@@ -1,0 +1,20 @@
+extends base/layout.pug
+
+block scripts
+    script(src='/client.js', defer)
+
+block content
+    main(class='content')
+        include includes/info.pug
+        include includes/summary.pug
+        if user
+            if ownReview
+                include includes/own-review.pug
+            else
+                include includes/review-form.pug
+        each review in reviews
+            unless review.author === user
+                include includes/review.pug
+        else
+            section(class='review shadow')
+                p(class='review__comment') Sorry, no one has reviewed this film yet

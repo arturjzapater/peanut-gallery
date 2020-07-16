@@ -1,14 +1,7 @@
-const express = require('express')
-const bodyParser = require('body-parser')
+const { MongoClient } = require('mongodb')
+const { uri, opts } = require('./conf/db')
+const app = require('./app')
 
-const { PORT = 5000 } = process.env
-
-const app = express()
-
-app.set('views', './views')
-app.set('view engine', 'pug')
-
-app.use(bodyParser.json())
-app.use(bodyParser.urlencoded({ extended: false }))
-
-app.listen(PORT, () => console.log(`Server listening on port ${PORT}`))
+MongoClient.connect(uri, opts)
+    .then(app)
+    .catch(console.error)
