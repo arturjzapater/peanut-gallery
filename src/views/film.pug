@@ -1,32 +1,51 @@
 extends base/layout.pug
 
 block content
-    main
+    main(class='content')
         section(class='info')
-            h2(class='info__title')= title
-            span(class='info__rated')= rated
+            div(class='info__head')
+                h2(class='info__title')= title
+                span(class='info__rated')= rated
             p(class='info__plot')= plot
             div(class='info__meta')
-                p Realease Date: #{released}
-                p Runtime: #{runtime}
-                p Genre: #{genre}
-                p Director: #{director}
-                p Writer: #{writer}
-        section(class='info')
-            h2(class='info__title') Some Ratings
-            each r in ratings
-                p #{r.Source}: #{r.Value}
+                p 
+                    strong Realease Date:
+                    | &nbsp;#{released}
+                p 
+                    strong Runtime:
+                    | &nbsp;#{runtime}
+                p 
+                    strong Genre:
+                    | &nbsp;#{genre}
+                p
+                    strong Director:
+                    | &nbsp;#{director}
+                p 
+                    strong Writer:
+                    | &nbsp;#{writer}
+        section(class='summary shadow')
+            h2(class='summary__title') Some Ratings
+            div(class='summary__ratings')
+                each r in ratings
+                    div(class='rating')
+                        span(class='rating__value')= r.Value
+                        span(class='rating__source')= r.Source
         if user
             include includes/review-form.pug
         each review in reviews
-            section(class='review')
+            section(class='review shadow')
+                p(class='review__comment review__author')
+                    | What&nbsp;
+                    strong= review.user
+                    | &nbsp;thinks about #{title}
+                p(class='review__comment review__tag') This film is worth...
                 if review.worthSeeing
-                    span(class='review__worth') Worth Seeing
+                    span(class='review__worth') &#10003; Seeing
                 if review.worthCinema
-                    span(class='review__worth') Worth Seeing at a Cinema
+                    span(class='review__worth') &#10003; Seeing at a Cinema
                 if review.worthOwning
-                    span(class='review__worth') Worth Owning
+                    span(class='review__worth') &#10003; Owning
                 p(class='review__comment')= review.comment
         else
-            section(class='review')
+            section(class='review shadow')
                 p Sorry, no one has reviewed this film yet

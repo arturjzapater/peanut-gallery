@@ -1,14 +1,15 @@
 extends base/layout.pug
 
 block content
-    section(class='form')
-        form(action='/search', method='GET')
-            input(type='text', name='search')
-            input(type='submit')
+    section(class='form content')
+        p(class='form__text') Search films
+        form(action='/search', method='GET', class='form__fields')
+            input(type='text', name='search', class='form__input')
+            input(type='submit', class='form__btn', value='Search')
 
-    main
+    main(class='content')
         each film in films
-            section(class='card')
+            section(class='card shadow')
                 h2(class='card__title')= film.Title
-                span(class='card__year') Published #{film.Year}
+                span(class='card__year') (#{film.Year})
                 a(href=`/films/${film.imdbID}`, class='card__link') See Reviews
