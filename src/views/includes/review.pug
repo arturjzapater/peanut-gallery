@@ -1,0 +1,16 @@
+mixin check(text)
+    span.review__worth &#10003; #{text}
+
+section(class='review shadow')
+    p(class='review__comment review__author')
+        | What&nbsp;
+        strong= review.author.slice(0, 12)
+        | &nbsp;thinks about #{title}
+    p(class='review__comment review__tag') This film is worth...
+    if review.worthSeeing
+        +check('Seeing')
+    if review.worthCinema
+        +check('Seeing at a cinema')
+    if review.worthOwning
+        +check('Owning')
+    p(class='review__comment')= review.comment

@@ -1,0 +1,17 @@
+mixin rating(value, source)
+    div.rating
+        span.rating__value= value
+        span.rating__source= source
+
+section(class='summary shadow')
+    h2(class='summary__title') Ratings Summary
+    if reviews.length
+        p(class='summary__desc') Our users think
+        div(class='summary__ratings')
+            +rating(worth.see + '%', 'It\'s worth seeing')
+            +rating(worth.cinema + '%', 'It\'s worth seeing at a cinema')
+            +rating(worth.own + '%', 'It\'s worth owning')
+    p(class='summary__desc') Other popular websites think
+    div(class='summary__ratings')
+        each r in ratings
+            +rating(r.Value, r.Source)

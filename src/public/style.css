@@ -144,7 +144,7 @@ main {
 .card__info {
     flex-grow: 1;
     display: grid;
-    grid-template-columns: 1fr 50px;
+    grid-template-columns: 1fr 100px;
     align-items: baseline;
     padding: 1rem 2rem;
 }
@@ -152,6 +152,10 @@ main {
 .card__poster {
     height: 150px;
     width: auto;
+}
+
+.card__year {
+    justify-self: flex-end;
 }
 
 .form__fields {
