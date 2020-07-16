@@ -1,6 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Ranchers&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Source+Serif+Pro:ital,wght@0,200;0,300;0,400;0,600;0,700;0,900;1,200;1,300;1,400;1,600;1,700;1,900&display=swap');
 
 :root {
+    --danger: hsl(7, 76%, 42%);
     --dark-emphasis: hsl(343, 46%, 41%);
     --dark-main: hsl(309, 26%, 57%);
     --dark-secondary: hsl(309, 26%, 72%);
@@ -45,9 +46,13 @@ label {
     margin: 0.2rem 0;
 }
 
-input, textarea {
+button, input, textarea {
     outline: none;
     padding: 0.5rem;
+}
+
+button {
+    cursor: pointer;
 }
 
 /* Layout */
@@ -86,6 +91,8 @@ main {
 }
 
 .info {
+    display: grid;
+    grid-template-columns: 1fr 3fr;
     margin-top: 1rem;
 }
 
@@ -93,26 +100,57 @@ main {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     margin: 1rem 0;
-    padding: 1rem;
+    padding: 2rem;
 }
 
 .review-form {
     margin: 1rem 0;
-    padding: 1rem;
+    padding: 2rem;
 }
 
 .summary {
     margin: 1rem 0;
-    padding: 1rem;
+    padding: 2rem;
+}
+
+@media screen and (max-width: 800px) {
+    .content {
+        padding: 0 5vw;
+    }
+}
+
+@media screen and (max-width: 500px) {
+    .info {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .review {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .review, .review-form, .summary {
+        padding: 0.8rem;
+    }
 }
 
 /* Module */
 .card {
+    display: flex;
+    margin-bottom: 1rem;
+}
+
+.card__info {
     display: grid;
     grid-template-columns: 1fr 50px;
     align-items: baseline;
     padding: 1rem 2rem;
-    margin-bottom: 1rem;
+}
+
+.card__poster {
+    height: 150px;
+    width: auto;
 }
 
 .form__fields {
@@ -131,10 +169,28 @@ main {
     align-self: center;
 }
 
+.info__details {
+    cursor: pointer;
+    padding: 1rem 0;
+    display: flex;
+    justify-content: space-between;
+    padding-right: 2rem;
+}
+
 .info__head {
     display: grid;
     grid-template-columns: 1fr 50px;
     align-items: baseline;
+}
+
+.info__meta {
+    grid-column: 1 / 3;
+}
+
+.info__poster {
+    width: 200px;
+    height: auto;
+    margin-right: 1rem;
 }
 
 .info__rated {
@@ -165,6 +221,11 @@ main {
     margin-top: 0;
 }
 
+.review__btn {
+    grid-column: 3 / 4;
+    margin: 0 1rem;
+}
+
 .review__comment {
     grid-column: 1 / 4;
 }
@@ -191,6 +252,13 @@ main {
     resize: none;
 }
 
+.summary__desc {
+    font-size: 0.9rem;
+    font-weight: 500;
+    margin-top: 1rem;
+    margin-bottom: 0;
+}
+
 .summary__ratings {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
@@ -198,6 +266,49 @@ main {
 
 .summary__title {
     margin-bottom: 1rem;
+}
+
+@media screen and (max-width: 500px) {
+    .card__info {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .card__poster {
+        align-self: center;
+        max-width: 50px;
+        max-height: 90px;
+        width: auto;
+        height: auto;
+    }
+
+    .card__title {
+        margin-bottom: 0;
+    }
+
+    .card__year {
+        margin-bottom: 1rem;
+    }
+
+    .rating {
+        flex-direction: row;
+        justify-content: space-between;
+        margin: 0.2rem 0;
+    }
+
+    .rating__value {
+        font-size: 1.1rem;
+    }
+
+    .summary__ratings {
+        display: flex;
+        flex-direction: column;
+    }
+}
+
+/* State */
+.hidden {
+    display: none;
 }
 
 /* Theme */
@@ -245,12 +356,32 @@ header {
     border-color: var(--dark-emphasis);
 }
 
+.info__details:hover {
+    background-color: var(--light-emphasis);
+}
+
 .info__title {
     color: var(--dark-detail);
 }
 
 .review {
     background-color: var(--light-emphasis);
+}
+
+.review__btn {
+    background-color: var(--danger);
+    border: none;
+    color: var(--light-main);
+    font-weight: bold;
+}
+
+.review__btn:hover {
+    box-shadow: 0 0 2px 2px var(--shadow);
+}
+
+.review--own {
+    background-color: var(--dark-detail);
+    color: var(--light-main);
 }
 
 .review-form {

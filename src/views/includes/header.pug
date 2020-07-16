@@ -5,4 +5,6 @@ header
         if user
             a(href='/auth/logout', class='navbar__link-log') Logout
         else
-            a(href='/auth/google', class='navbar__link-log') Login with Google
+            a(href='/auth/google', class='navbar__link-log')
+                i(class='fab fa-google')
+                | &nbsp;Google Login
