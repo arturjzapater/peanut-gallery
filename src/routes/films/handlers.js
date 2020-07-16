@@ -1,6 +1,7 @@
 const fetch = require('node-fetch')
 const { base } = require('../../conf/api')
 const {
+    addLike,
     addReview,
     deleteReview,
     getReviews,
@@ -56,7 +57,7 @@ const handleGetFilm = client => (req, res, next) => {
 
 const handleDeleteReview = client => (req, res, next) => {
     deleteReview(client, req.params.review, req.user.id)
-        .then(() => res.redirect(`/films/${req.params.id}`))
+        .then(() => res.status(204).end())
         .catch(next)
 }
 
@@ -67,10 +68,17 @@ const handlePostReview = client => (req, res, next) => {
         ...req.body,
         film: req.params.id,
         author: req.user.id,
+        votes: [ req.user.id ],
         timestamp: Date.now(),
     }
     addReview(client, review)
         .then(() => res.redirect(`/films/${req.params.id}`))
+        .catch(next)
+}
+
+const handlePutReview = client => (req, res, next) => {
+    addLike(client, req.params.review, req.user.id)
+        .then(() => res.status(204).end())
         .catch(next)
 }
 
@@ -98,5 +106,6 @@ module.exports = {
     handleGetFilm,
     handleHome,
     handlePostReview,
+    handlePutReview,
     handleSearch,
 }

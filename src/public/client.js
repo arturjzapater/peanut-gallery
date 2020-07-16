@@ -13,6 +13,12 @@ const toggleMeta = () => {
     }
 }
 
+const vote = elem => {
+    const review = elem.getAttribute('data-review')
+    fetch(`/reviews/${review}`, { method: 'PUT' })
+        .then(() => location.reload())
+}
+
 window.onload = () => {
     if (document.getElementById('own-review')) {
         const deleteBtn = document.getElementById('delete')
@@ -23,4 +29,9 @@ window.onload = () => {
 
     document.getElementById('meta-toggle')
         .addEventListener('click', toggleMeta)
+
+    document.querySelectorAll('.review__vote')
+        .forEach(x => {
+            x.addEventListener('click', () => vote(x))
+        })
 }

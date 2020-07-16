@@ -235,10 +235,18 @@ main {
     grid-column: 1 / 4;
 }
 
+.review__likes {
+    margin: 0;
+}
+
 .review__tag {
     font-size: 0.9rem;
     font-style: italic;
     margin: 0;
+}
+
+.review__vote {
+    cursor: pointer;
 }
 
 .review__worth {
