@@ -6,7 +6,7 @@ const addReview = (client, review) => getCollection(client)
     .insertOne(review)
 
 const getReviews = (client, film) => getCollection(client)
-    .find({ film })
+    .find({ film }, { sort: [ [ 'timestamp', -1 ] ] })
     .toArray()
 
 module.exports = { 
