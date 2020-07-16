@@ -34,15 +34,28 @@ const handleGetFilm = client => (req, res, next) => {
         request(`${base}&i=${req.params.id}`),
     ])
         .then(mergeFilm)
-        .then(data => res.json(data))
+        .then(film => res.render('film', {
+            ...film,
+            user: req.user,
+        }))
         .catch(next)
 }
 
 const handleSearch = (req, res, next) => {
-    request(`${base}&s=${req.query.search}`)
-        .then(parseResults)
-        .then(data => res.json(data))
-        .catch(next)
+    if (req.query.search !== undefined) {
+        request(`${base}&s=${req.query.search}`)
+            .then(parseResults)
+            .then(films => res.render('search', {
+                films,
+                uesr: req.user,
+            }))
+            .catch(next)
+    } else {
+        res.render('search', {
+            films: [],
+            user: req.user,
+        })
+    }
 }
 
 module.exports = {

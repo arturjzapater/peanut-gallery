@@ -1,0 +1,14 @@
+extends base/layout.pug
+
+block content
+    section(class='form')
+        form(action='/search', method='GET')
+            input(type='text', name='search')
+            input(type='submit')
+
+    main
+        each film in films
+            section(class='card')
+                h2(class='card__title')= film.Title
+                span(class='card__year') Published #{film.Year}
+                a(href=`/films/${film.imdbID}`, class='card__link') See Reviews
