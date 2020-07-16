@@ -1,0 +1,267 @@
+@import url('https://fonts.googleapis.com/css2?family=Ranchers&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Source+Serif+Pro:ital,wght@0,200;0,300;0,400;0,600;0,700;0,900;1,200;1,300;1,400;1,600;1,700;1,900&display=swap');
+
+:root {
+    --dark-emphasis: hsl(343, 46%, 41%);
+    --dark-main: hsl(309, 26%, 57%);
+    --dark-secondary: hsl(309, 26%, 72%);
+    --dark-detail: hsl(204, 42%, 37%);
+    --light-detail: hsl(221, 44%, 86%);
+    --light-emphasis: hsl(204, 42%, 75%);
+    --light-main: hsl(225, 38%, 94%);
+    --shadow: hsla(338, 46%, 8%, 0.7);
+}
+
+/* Base */
+* {
+    box-sizing: border-box;
+}
+
+body {
+    background-color: var(--light-detail);
+    font-family: 'Roboto', sans-serif;
+    font-size: 16px;
+    margin: 0;
+    padding: 0;
+}
+
+a {
+    text-decoration: none;
+}
+
+h1 {
+    font-family: 'Ranchers', serif;
+    font-size: 2.5rem;
+    margin-bottom: 0.8rem;
+}
+
+h2 {
+    font-family: 'Source Serif Pro', serif;
+    font-weight: 600;
+    margin: 0;
+    margin-bottom: 1rem;
+}
+
+label {
+    margin: 0.2rem 0;
+}
+
+input, textarea {
+    outline: none;
+    padding: 0.5rem;
+}
+
+/* Layout */
+body {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+footer {
+    font-size: 0.8rem;
+    margin-top: 2rem;
+    padding: 1rem 3rem 2rem 3rem;
+}
+
+header {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    margin-bottom: 0.5rem;
+    padding-bottom: 1rem;
+}
+
+main {
+    flex-grow: 1;
+}
+
+.content {
+    padding: 0 15vw;
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+}
+
+.info {
+    margin-top: 1rem;
+}
+
+.review {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    margin: 1rem 0;
+    padding: 1rem;
+}
+
+.review-form {
+    margin: 1rem 0;
+    padding: 1rem;
+}
+
+.summary {
+    margin: 1rem 0;
+    padding: 1rem;
+}
+
+/* Module */
+.card {
+    display: grid;
+    grid-template-columns: 1fr 50px;
+    align-items: baseline;
+    padding: 1rem 2rem;
+    margin-bottom: 1rem;
+}
+
+.form__fields {
+    display: flex;
+}
+
+.form__input {
+    flex-grow: 1;
+}
+
+.form__text {
+    margin-bottom: 0;
+}
+
+.header__title {
+    align-self: center;
+}
+
+.info__head {
+    display: grid;
+    grid-template-columns: 1fr 50px;
+    align-items: baseline;
+}
+
+.info__rated {
+    font-weight: bold;
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-around;
+}
+
+.rating {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.rating__source {
+    font-size: 0.8rem;
+}
+
+.rating__value {
+    font-size: 1.3rem;
+}
+
+.review__author {
+    font-size: 0.8rem;
+    margin-top: 0;
+}
+
+.review__comment {
+    grid-column: 1 / 4;
+}
+
+.review__tag {
+    font-size: 0.9rem;
+    font-style: italic;
+    margin: 0;
+}
+
+.review__worth {
+    font-weight: bold;
+}
+
+.review-form__fields {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+}
+
+.review-form__comment {
+    min-height: 100px;
+    width: 100%;
+    resize: none;
+}
+
+.summary__ratings {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+}
+
+.summary__title {
+    margin-bottom: 1rem;
+}
+
+/* Theme */
+a {
+    color: var(--light-emphasis);
+}
+
+footer {
+    background-color: var(--dark-detail);
+    color: var(--light-main);
+}
+
+header {
+    background-color: var(--dark-detail);
+    box-shadow: 0 2px 3px 1px var(--shadow);
+    color: var(--light-main);
+}
+
+.card {
+    background-color: var(--light-emphasis);
+}
+
+.card__link {
+    color: var(--dark-emphasis)
+}
+
+.form__btn {
+    background-color: var(--dark-main);
+    border: none;
+    color: var(--light-main);
+    font-weight: bold;
+    transition: all 0.6s ease 0s;
+}
+
+.form__btn:hover {
+    background-color: var(--dark-emphasis);
+    cursor: pointer;
+}
+
+.form__input {
+    border: 2px solid var(--dark-main);
+}
+
+.form__input:focus {
+    border-color: var(--dark-emphasis);
+}
+
+.info__title {
+    color: var(--dark-detail);
+}
+
+.review {
+    background-color: var(--light-emphasis);
+}
+
+.review-form {
+    background-color: var(--dark-detail);
+    color: var(--light-main);
+}
+
+.shadow {
+    box-shadow: 2px 2px 1px var(--shadow);
+}
+
+.summary {
+    background-color: var(--dark-secondary);
+}

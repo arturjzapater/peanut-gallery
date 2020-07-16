@@ -11,7 +11,7 @@ const filterSearchFields = ({ Title, Year, imdbID }) => ({
     imdbID,
 })
 
-const parseResults = ({ Search }) => Search.map(filterSearchFields)
+const parseResults = films => films.map(filterSearchFields)
 
 const mergeFilm = ([ reviews, film ]) => ({
     title: film.Title,
@@ -57,6 +57,7 @@ const handlePostReview = client => (req, res, next) => {
 const handleSearch = (req, res, next) => {
     if (req.query.search !== undefined) {
         request(`${base}&s=${req.query.search}`)
+            .then(({ Search }) => Search || [])
             .then(parseResults)
             .then(films => res.render('search', {
                 films,
