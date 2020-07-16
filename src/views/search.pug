@@ -1,21 +1,11 @@
 extends base/layout.pug
 
 block content
-    section(class='form content')
-        p(class='form__text') Search films
-        form(action='/search', method='GET', class='form__fields')
-            input(type='text', name='search', class='form__input')
-            input(type='submit', class='form__btn', value='Search')
+    include includes/search-form.pug
 
     main(class='content')
         each film in films
-            section(class='card shadow')
-                if film.Poster !== 'N/A'
-                    img(src=`${film.Poster}`, alt=`${film.Title}`, class='card__poster')
-                div(class='card__info')
-                    h2(class='card__title')= film.Title
-                    span(class='card__year') (#{film.Year})
-                    a(href=`/films/${film.imdbID}`, class='card__link') See Reviews
+            include includes/film-card.pug
         else
             if search
                 p Sorry, no matches found for that search.

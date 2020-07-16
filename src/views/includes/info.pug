@@ -1,0 +1,22 @@
+mixin meta(text, prop)
+    p 
+        strong #{text}:
+        | &nbsp;#{prop}
+
+section(class='info')
+    img(class='info__poster', src=`${poster}` alt=`${title}'s poster`)
+    section
+        div(class='info__head')
+            h2(class='info__title')= title
+            span(class='info__rated')= rated
+        p(class='info__plot')= plot
+    div(class='info__meta info__details', id='meta-toggle')
+        | Details
+        div(id='arrow')
+            i(class='fas fa-chevron-left')
+    section(class='info__meta hidden', id='meta-info')
+        +meta('Release Date', released)
+        +meta('Runtime', runtime)
+        +meta('Genre', genre)
+        +meta('Director', director)
+        +meta('Writer', writer)

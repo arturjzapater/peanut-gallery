@@ -1,0 +1,15 @@
+mixin check(text)
+    span.review__worth &#10003; #{text}
+
+section(class='review review--own shadow', id='own-review')
+    p(class='review__comment review__author')
+        | What you think about #{title}
+    p(class='review__comment review__tag') This film is worth...
+    if ownReview.worthSeeing
+        +check('Seeing')
+    if ownReview.worthCinema
+        +check('Seeing at a cinema')
+    if ownReview.worthOwning
+        +check('Owning')
+    p(class='review__comment')= ownReview.comment
+    button(class='review__btn', id=`delete` data-review=`${ownReview._id}`) Delete

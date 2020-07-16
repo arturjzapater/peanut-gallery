@@ -5,84 +5,16 @@ block scripts
 
 block content
     main(class='content')
-        section(class='info')
-            img(class='info__poster', src=`${poster}` alt=`${title}'s poster`)
-            section
-                div(class='info__head')
-                    h2(class='info__title')= title
-                    span(class='info__rated')= rated
-                p(class='info__plot')= plot
-            div(class='info__meta info__details', id='meta-toggle')
-                | Details
-                div(id='arrow')
-                    i(class='fas fa-chevron-left')
-            section(class='info__meta hidden', id='meta-info')
-                p 
-                    strong Realease Date:
-                    | &nbsp;#{released}
-                p 
-                    strong Runtime:
-                    | &nbsp;#{runtime}
-                p 
-                    strong Genre:
-                    | &nbsp;#{genre}
-                p
-                    strong Director:
-                    | &nbsp;#{director}
-                p 
-                    strong Writer:
-                    | &nbsp;#{writer}
-        section(class='summary shadow')
-            h2(class='summary__title') Ratings Summary
-            if reviews.length
-                p(class='summary__desc') Our users think
-                div(class='summary__ratings')
-                    div(class='rating')
-                        span(class='rating__value') #{worth.see}%
-                        span(class='rating__source') It's worth seeing
-                    div(class='rating')
-                        span(class='rating__value') #{worth.cinema}%
-                        span(class='rating__source') It's worth seeing at a cinema
-                    div(class='rating')
-                        span(class='rating__value') #{worth.own}%
-                        span(class='rating__source') It's worth owning
-            p(class='summary__desc') Other popular websites think
-            div(class='summary__ratings')
-                each r in ratings
-                    div(class='rating')
-                        span(class='rating__value')= r.Value
-                        span(class='rating__source')= r.Source
+        include includes/info.pug
+        include includes/summary.pug
         if user
             if ownReview
-                section(class='review review--own shadow', id='own-review')
-                    p(class='review__comment review__author')
-                        | What you think about #{title}
-                    p(class='review__comment review__tag') This film is worth...
-                    if ownReview.worthSeeing
-                        span(class='review__worth') &#10003; Seeing
-                    if ownReview.worthCinema
-                        span(class='review__worth') &#10003; Seeing at a Cinema
-                    if ownReview.worthOwning
-                        span(class='review__worth') &#10003; Owning
-                    p(class='review__comment')= ownReview.comment
-                    button(class='review__btn', id=`delete` data-review=`${ownReview._id}`) Delete
+                include includes/own-review.pug
             else
                 include includes/review-form.pug
         each review in reviews
             unless review.author === user
-                section(class='review shadow')
-                    p(class='review__comment review__author')
-                        | What&nbsp;
-                        strong= review.author.slice(0, 12)
-                        | &nbsp;thinks about #{title}
-                    p(class='review__comment review__tag') This film is worth...
-                    if review.worthSeeing
-                        span(class='review__worth') &#10003; Seeing
-                    if review.worthCinema
-                        span(class='review__worth') &#10003; Seeing at a Cinema
-                    if review.worthOwning
-                        span(class='review__worth') &#10003; Owning
-                    p(class='review__comment')= review.comment
+                include includes/review.pug
         else
             section(class='review shadow')
                 p(class='review__comment') Sorry, no one has reviewed this film yet
