@@ -1,0 +1,24 @@
+extends base/layout.pug
+
+block content
+    main
+        section(class='info')
+            h2(class='info__title')= title
+            span(class='info__rated')= rated
+            p(class='info__plot')= plot
+            div(class='info__meta')
+                p Realease Date: #{released}
+                p Runtime: #{runtime}
+                p Genre: #{genre}
+                p Director: #{director}
+                p Writer: #{writer}
+        section(class='info')
+            h2(class='info__title') Some Ratings
+            each r in ratings
+                p #{r.Source}: #{r.Value}
+        each review in reviews
+            section(class='review')
+                p Hi
+        else
+            section(class='review')
+                p Sorry, no one has reviewed this film yet
