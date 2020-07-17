@@ -22,7 +22,7 @@ You will need to create [Google credentials](https://developers.google.com/ident
 
 You will also need to request an [API key for OMDb](https://www.omdbapi.com/apikey.aspx) and update [api.js](src/conf.example/api.js).
 
-Lastly, you might want to choose one or more cookie keys and add them to [cookie.js](src/conf.example/cookie.js).
+Lastly, you might want to choose one or more cookie keys and add them to [cookies.js](src/conf.example/cookies.js).
 
 ### Start the app
 
