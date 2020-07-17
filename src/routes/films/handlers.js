@@ -8,10 +8,10 @@ const {
     removeLike,
  } = require('../../lib/db')
 
- const actions = {
-     add: (client, review, user) => addLike(client, review, user),
-     remove: (client, review, user) => removeLike(client, review, user),
- }
+const actions = {
+    add: (client, review, user) => addLike(client, review, user),
+    remove: (client, review, user) => removeLike(client, review, user),
+}
 
 const count = prop => xs => Math.round(xs.filter(x => x[prop]).length / xs.length * 100)
 const countCinema = count('worthCinema')
