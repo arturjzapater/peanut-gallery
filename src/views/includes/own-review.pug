@@ -14,8 +14,8 @@ section(class='review review--own shadow', id='own-review')
     p(class='review__comment')= ownReview.comment
     p.review__likes
         if ownReview.votes.includes(user)
-            i(class='fas fa-heart review__vote', data-review=`${ownReview._id}`)
+            i(class='fas fa-heart review__vote', data-review=`${ownReview._id}`, data-action='remove')
         else
-            i(class='far fa-heart review__vote', data-review=`${ownReview._id}`)
+            i(class='far fa-heart review__vote', data-review=`${ownReview._id}`, data-action='add')
         | &nbsp;#{ownReview.votes.length}
     button(class='review__btn', id=`delete` data-review=`${ownReview._id}`) Delete

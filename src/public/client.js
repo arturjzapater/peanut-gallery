@@ -15,7 +15,12 @@ const toggleMeta = () => {
 
 const vote = elem => {
     const review = elem.getAttribute('data-review')
-    fetch(`/reviews/${review}`, { method: 'PUT' })
+    const action = elem.getAttribute('data-action')
+    fetch(`/reviews/${review}`, {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ action }),
+    })
         .then(() => location.reload())
 }
 
