@@ -16,7 +16,7 @@ section(class='review shadow')
     p(class='review__comment')= review.comment
     p.review__likes
         if review.votes.includes(user)
-            i(class=`fas fa-heart${user ? ' review__vote' : ''}`, data-review=`${review._id}`)
+            i(class=`fas fa-heart${user ? ' review__vote' : ''}`, data-review=`${review._id}`, data-action='remove')
         else
-            i(class=`far fa-heart${user ? ' review__vote' : ''}`, data-review=`${review._id}`)
+            i(class=`far fa-heart${user ? ' review__vote' : ''}`, data-review=`${review._id}`, data-action='add')
         | &nbsp;#{review.votes.length}

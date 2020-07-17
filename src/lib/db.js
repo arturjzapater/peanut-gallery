@@ -24,9 +24,18 @@ const getReviews = (client, film) => getCollection(client)
     ] })
     .toArray()
 
+const removeLike = (client, review, user) => getCollection(client)
+    .updateOne({
+        _id: ObjectId(review),
+        votes: user,
+    }, {
+        $pull: { votes: user }, 
+    })
+
 module.exports = { 
     addLike,
     addReview,
     deleteReview,
     getReviews,
+    removeLike,
 }

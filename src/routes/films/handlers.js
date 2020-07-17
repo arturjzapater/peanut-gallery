@@ -5,7 +5,13 @@ const {
     addReview,
     deleteReview,
     getReviews,
+    removeLike,
  } = require('../../lib/db')
+
+ const actions = {
+     add: (client, review, user) => addLike(client, review, user),
+     remove: (client, review, user) => removeLike(client, review, user),
+ }
 
 const count = prop => xs => Math.round(xs.filter(x => x[prop]).length / xs.length * 100)
 const countCinema = count('worthCinema')
@@ -77,7 +83,8 @@ const handlePostReview = client => (req, res, next) => {
 }
 
 const handlePutReview = client => (req, res, next) => {
-    addLike(client, req.params.review, req.user.id)
+    const action = actions[req.body.action]
+    action(client, req.params.review, req.user.id)
         .then(() => res.status(204).end())
         .catch(next)
 }
